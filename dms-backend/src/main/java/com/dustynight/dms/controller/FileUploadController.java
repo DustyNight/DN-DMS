@@ -1,5 +1,6 @@
 package com.dustynight.dms.controller;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import com.dustynight.dms.dto.FileDTO;
 import com.dustynight.dms.model.FileModel;
@@ -24,22 +25,24 @@ public class FileUploadController {
     @Autowired
     FileService fileService;
 
-    @PostMapping(value = "/upload", consumes = { "multipart/form-data"})
+    @PostMapping(value = "/upload", consumes = {"multipart/form-data"})
     public void upload(@RequestPart("file") MultipartFile multipartFile,
-                       @RequestPart("fileDTO") FileDTO fileDTO) throws IOException {
+                       @RequestPart("tags") String tags,
+                       @RequestPart("author") String author) throws IOException {
         //Create a file model and set values
         FileModel fileModel = new FileModel();
         fileModel.setFileName(multipartFile.getOriginalFilename());
         fileModel.setSize(multipartFile.getSize());
         fileModel.setType(multipartFile.getContentType());
-        fileModel.setAuthor(fileDTO.getAuthor());
-        fileModel.setTags(fileDTO.getTags());
+        fileModel.setAuthor(author);
+        fileModel.setTags(tags);
         fileModel.setUploadedTime(System.currentTimeMillis());
         fileModel.setModifiedTime(fileModel.getUploadedTime());
         fileModel.setFileId(IdUtil.randomUUID());
 
         //Create temp file
-        File tmpFile = new File("./dms/tmp/", fileModel.getFileId());
+        File tmpFile =
+                FileUtil.touch("E:\\dms\\tmp\\" + fileModel.getFileId() + "." + fileModel.getType().split("/")[1]);
         try {
             multipartFile.transferTo(tmpFile);
         } catch (Exception e) {

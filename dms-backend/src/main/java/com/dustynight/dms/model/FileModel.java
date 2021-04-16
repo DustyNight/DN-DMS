@@ -15,6 +15,7 @@ public class FileModel {
     private String fileName;
     private String author;
     private String fileId;
+    private String filePath;
     private Long uploadedTime;
     private Long modifiedTime;
     private String type;
