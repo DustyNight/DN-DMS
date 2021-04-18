@@ -28,7 +28,7 @@ public class SolrService {
 
     public void fileIndex(FileModel fileModel) {
         SolrFileDTO solrFileDTO = new SolrFileDTO();
-        solrFileDTO.setFileId(fileModel.getFileId());
+        solrFileDTO.setFileId(fileModel.getFileId().toString());
         solrFileDTO.setFileName(fileModel.getFileName());
         solrFileDTO.setFilePath(fileModel.getFilePath());
         solrFileDTO.setAuthor(fileModel.getAuthor());

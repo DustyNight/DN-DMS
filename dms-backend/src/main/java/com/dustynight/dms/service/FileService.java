@@ -24,11 +24,12 @@ public class FileService {
 
     public void saveFile(FileModel fileModel, File file) {
         String path = "E:\\dms\\files\\";
-        fileModel.setFilePath(path + fileModel.getFileId() + "." + fileModel.getType().split("/")[1]);
+        fileModel.setFilePath(path + fileModel.getFileId().toString() + "." + fileModel.getType().split("/")[1]);
         FileUtil.copy(file.getPath(), path + file.getName(), true);
         FileUtil.del(file.getPath());
 
         //FileMapper
+        fileMapper.insert(fileModel);
 
         //Solr index
         solrService.fileIndex(fileModel);

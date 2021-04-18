@@ -1,5 +1,7 @@
 package com.dustynight.dms.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +13,12 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @Data
+@TableName("file")
 public class FileModel {
+    @TableId
+    private Long fileId;
     private String fileName;
     private String author;
-    private String fileId;
     private String filePath;
     private Long uploadedTime;
     private Long modifiedTime;

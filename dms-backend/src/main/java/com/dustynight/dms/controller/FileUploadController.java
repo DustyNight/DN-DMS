@@ -1,6 +1,7 @@
 package com.dustynight.dms.controller;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
 import com.dustynight.dms.dto.FileDTO;
 import com.dustynight.dms.model.FileModel;
@@ -38,7 +39,8 @@ public class FileUploadController {
         fileModel.setTags(tags);
         fileModel.setUploadedTime(System.currentTimeMillis());
         fileModel.setModifiedTime(fileModel.getUploadedTime());
-        fileModel.setFileId(IdUtil.randomUUID());
+        Snowflake snowflake = IdUtil.getSnowflake(1, 1);
+        fileModel.setFileId(snowflake.nextId());
 
         //Create temp file
         File tmpFile =
