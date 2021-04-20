@@ -1,5 +1,6 @@
 package com.dustynight.dms.service;
 
+import cn.hutool.core.util.StrUtil;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class TikaService {
         } catch (IOException | TikaException e) {
             e.printStackTrace();
         }
+        StrUtil.removeAllLineBreaks(content);
+        StrUtil.removeAll(" ", content);
         return content;
     }
 }

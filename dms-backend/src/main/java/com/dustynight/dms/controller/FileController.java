@@ -3,7 +3,6 @@ package com.dustynight.dms.controller;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
-import com.dustynight.dms.dto.FileDTO;
 import com.dustynight.dms.model.FileModel;
 import com.dustynight.dms.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import java.io.IOException;
  * @date: 4/11/2021
  **/
 @RestController
-public class FileUploadController {
+public class FileController {
     @Autowired
     FileService fileService;
 

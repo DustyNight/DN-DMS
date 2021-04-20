@@ -1,13 +1,19 @@
 package com.dustynight.dms.service;
 
+import cn.hutool.core.convert.Convert;
+import com.dustynight.dms.dto.HighlightFileDTO;
 import com.dustynight.dms.dto.SolrFileDTO;
 import com.dustynight.dms.model.FileModel;
 import com.dustynight.dms.repository.SolrFileRepository;
 import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.response.UpdateResponse;
-import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.solr.core.query.result.HighlightEntry;
+import org.springframework.data.solr.core.query.result.HighlightPage;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @className: SolrService
@@ -36,5 +42,26 @@ public class SolrService {
         solrFileDTO.setType(fileModel.getType());
         solrFileDTO.setFileContent(tikaService.parseToString(fileModel.getFilePath()));
         solrFileRepository.save(solrFileDTO);
+    }
+
+    public List<HighlightFileDTO> getHighlightFile(String searchTerm, Pageable pageable) {
+        List<HighlightFileDTO> resList = new ArrayList<HighlightFileDTO>();
+        HighlightPage<SolrFileDTO> highlightPage = solrFileRepository.findByCustomQuery(searchTerm, pageable);
+        for(HighlightEntry<SolrFileDTO> entry : highlightPage.getHighlighted()) {
+            HighlightFileDTO temp = new HighlightFileDTO();
+            if(entry.getHighlights().size() != 0) {
+                temp.setHighlightContent(entry.getHighlights().get(0).getSnipplets().get(0));
+            } else {
+                temp.setHighlightContent("");
+            }
+            temp.setFileId(Convert.toLong(entry.getEntity().getFileId()));
+            temp.setFileName(entry.getEntity().getFileName());
+            temp.setAuthor(entry.getEntity().getAuthor());
+            temp.setFilePath(entry.getEntity().getFilePath());
+            temp.setTags(entry.getEntity().getTags());
+            resList.add(temp);
+        }
+
+        return resList;
     }
 }

@@ -1,9 +1,6 @@
 package com.dustynight.dms.dto;
 
-import com.dustynight.dms.model.FileModel;
-import com.dustynight.dms.service.TikaService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.Indexed;
 import org.springframework.data.solr.core.mapping.SolrDocument;
