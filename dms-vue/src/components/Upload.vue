@@ -1,20 +1,31 @@
 <template>
   <el-upload
     class="upload"
-    action="https://jsonplaceholder.typicode.com/posts/"
+    ref="upload"
+    accept=".txt, .pdf, .docs, .pptx, .md"
+    action="/api/file/upload/"
     :on-preview="handlePreview"
     :on-remove="handleRemove"
-    multiple
-    :limit="1"
-    :on-exceed="handleExceed"
+    :data="fileData"
     :file-list="fileList"
+    :auto-upload="false"
   >
-    <el-button size="small" type="primary">Upload</el-button>
+    <template #trigger>
+      <el-button size="small" type="primary">Select</el-button>
+    </template>
+    <el-button
+      style="margin-left: 10px"
+      size="small"
+      type="success"
+      @click="submitUpload"
+      >Upload</el-button
+    >
     <template #tip>
       <div class="el-upload__tip">Support docs/txt/ppt/pdf/md/...</div>
     </template>
   </el-upload>
-  
+  <el-input v-model="fileData.tags" placeholder="default tag"></el-input>
+  <el-input v-model="fileData.author" placeholder="default author"></el-input>
 </template>
 
 <script>
@@ -22,19 +33,21 @@ export default {
   data() {
     return {
       fileList: [],
+      fileData: {
+        tags: "default tags",
+        author: "default author",
+      },
     };
   },
   methods: {
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
+    submitUpload() {
+      this.$refs.upload.submit();
+    },
     handlePreview(file) {
       console.log(file);
-    },
-    handleExceed() {
-      this.$message.warning(
-          'You can only upload 1 file once.'
-      );
     },
   },
   name: "Upload",

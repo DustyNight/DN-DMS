@@ -26,8 +26,8 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileModel> implemen
     SolrService solrService;
 
     public void saveFile(FileModel fileModel, File file) {
-        String path = "E:\\dms\\files\\";
-        fileModel.setFilePath(path + fileModel.getFileId().toString() + "." + fileModel.getType().split("/")[1]);
+        String path = "D:\\Clarence\\dms\\files\\";
+        fileModel.setFilePath(path + fileModel.getFileId().toString() + "." + fileModel.getFileName().substring(fileModel.getFileName().lastIndexOf(".") + 1));
         FileUtil.copy(file.getPath(), path + file.getName(), true);
         FileUtil.del(file.getPath());
 
