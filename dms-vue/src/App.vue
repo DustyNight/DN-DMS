@@ -3,7 +3,9 @@
   <p>
     <router-link to="/upload">Upload</router-link>
     <br>
-    <router-link to="/hello">Hello</router-link>
+    <router-link :to="{ path: 'hello', query: { msg: 'Hello Vue!' }}" >Hello</router-link>
+    <br>
+    <router-link :to="{ path: 'search', query: { searchTerm: 'Java' }}" >Search</router-link>
   </p>
   <router-view></router-view>
 </template>

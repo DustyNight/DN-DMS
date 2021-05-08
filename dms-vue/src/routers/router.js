@@ -1,26 +1,28 @@
 import Upload from '../components/Upload'
-import HelloWorld from '../components/HelloWorld' 
+import SearchResult from '../components/SearchResult'
+import HelloWorld from '../components/HelloWorld'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes =
     [
         {
+            name: "Upload",
             path: '/upload',
             component: Upload
         },
         {
-            path: '/hello',
+            name: "HelloWorld",
+            path: '/hello/',
             component: HelloWorld,
-            params: {
-                msg: "Hello Vue"
-            }
         },
         {
             path: '/',
             component: HelloWorld,
-            params: {
-                msg: "Hello Vue"
-            }
+        },
+        {
+            name: "SearchResult",
+            path: '/search/',
+            component: SearchResult,
         },
     ]
 

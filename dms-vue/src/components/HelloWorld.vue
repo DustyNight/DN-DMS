@@ -31,11 +31,17 @@
 </template>
 
 <script>
+let msg = "Hello World!";
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  data() {
+    return {
+      msg: this.msg,
+    }
+  },
+  mounted() {
+    this.msg = this.$route.query.msg;
+  },
 }
 </script>
 
