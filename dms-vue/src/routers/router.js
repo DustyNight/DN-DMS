@@ -1,6 +1,7 @@
 import Upload from '../components/Upload'
 import SearchResult from '../components/SearchResult'
-import HelloWorld from '../components/HelloWorld'
+import Home from '../components/Home'
+import ListFile from '../components/ListFile'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes =
@@ -11,13 +12,18 @@ const routes =
             component: Upload
         },
         {
-            name: "HelloWorld",
-            path: '/hello/',
-            component: HelloWorld,
+            name: "Home",
+            path: '/home/',
+            component: Home,
+        },
+        {
+            name: "ListFile",
+            path: '/listfile/',
+            component: ListFile,
         },
         {
             path: '/',
-            component: HelloWorld,
+            component: Home,
         },
         {
             name: "SearchResult",

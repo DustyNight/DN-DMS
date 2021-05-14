@@ -8,16 +8,17 @@
             <el-button class="button" type="text">Preview(In dev)</el-button>
           </div>
         </template>
-        <div id="fileAuthor">{{ file.author }}</div>
-        <div id="fileTags">{{ file.tags }}</div>
+        <div id="fileAuthor">Author: {{ file.author }}</div>
+        <div id="fileTags">Tags: {{ file.tags }}</div>
         <div id="fileContent" v-html="file.highlightContent"></div>
       </el-card>
+      <el-divider></el-divider>
     </div>
   </div>
   <div id="requestFail" v-else>
     <span
-      >Sorry, something goes wrong, please press F5 to refresh website, or retry
-      after a while.
+      >Sorry, something goes wrong, please wait a few seconds, or press F5 to
+      refresh website
     </span>
   </div>
 </template>

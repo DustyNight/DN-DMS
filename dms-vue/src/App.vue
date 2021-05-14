@@ -1,20 +1,15 @@
 <template>
-  <img src="./assets/logo.png" />
-  <p>
-    <router-link to="/upload">Upload</router-link>
-    <br>
-    <router-link :to="{ path: 'hello', query: { msg: 'Hello Vue!' }}" >Hello</router-link>
-    <br>
-    <router-link :to="{ path: 'search', query: { searchTerm: 'Java' }}" >Search</router-link>
-  </p>
+  <NavMenu/>
   <router-view></router-view>
 </template>
 
 <script>
+import NavMenu from './components/NavMenu';
 
 export default {
   name: "App",
   components: {
+    NavMenu,
   },
 };
 </script>
