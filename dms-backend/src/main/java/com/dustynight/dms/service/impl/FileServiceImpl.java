@@ -38,4 +38,10 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, FileModel> implemen
         solrService.fileIndex(fileModel);
     }
 
+    public void deleteFile(FileModel fileModel) {
+        solrService.deleteIndex(fileModel);
+        fileMapper.deleteById(fileModel.getFileId());
+        FileUtil.del(fileModel.getFilePath());
+    }
+
 }

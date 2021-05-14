@@ -13,4 +13,6 @@ import java.io.File;
  **/
 public interface FileService extends IService<FileModel> {
     void saveFile(FileModel fileModel, File tmpFile);
+
+    void deleteFile(FileModel fileModel);
 }

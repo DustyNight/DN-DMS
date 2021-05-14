@@ -58,4 +58,9 @@ public class FileController {
     public List<FileModel> showAll() {
         return fileService.list();
     }
+
+    @PostMapping(value = "/file/delete")
+    public void delete(@RequestParam String fileId) {
+        fileService.deleteFile(fileService.getById(fileId));
+    }
 }
