@@ -5,12 +5,14 @@
       <el-card class="box-card" shadow="hover">
         <template #header>
           <div class="card-header">
-            <span id="fileName">{{ file.fileName }}</span>
-            <el-button class="button" type="text">Delete(In dev)</el-button>
+            <div id="fileName">{{ file.fileName }}</div>
+            <el-button @click="deleteFile(file.fileId)" class="button" type="text" 
+              >Delete</el-button
+            >
           </div>
         </template>
         <div id="fileAuthor">Author: {{ file.author }}</div>
-        <div id="fileTags">Tags: {{ file.tags }}</div>
+        <div id="fileTags" >Tags: {{ file.tags }}</div>
       </el-card>
       <el-divider></el-divider>
     </div>
@@ -18,7 +20,7 @@
   <div id="requestFail" v-else>
     <span
       >Sorry, something goes wrong, please wait a few seconds, or press F5 to
-      refresh website
+      refresh website.
     </span>
   </div>
 </template>
@@ -39,8 +41,18 @@ export default {
         if (response.status === 200) {
           this.isRequestSuccess = true;
           this.fileLists = response.data;
+          // console.log(this.fileLists);
         }
       });
+    },
+    deleteFile(fileId) {
+      axios
+        .post("api/file/delete", {
+          fileId: fileId,
+        })
+        .then(function (response) {
+          console.log(response);
+        });
     },
   },
   mounted() {
