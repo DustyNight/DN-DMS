@@ -39,7 +39,7 @@ public class FileController {
         fileModel.setUploadedTime(System.currentTimeMillis());
         fileModel.setModifiedTime(fileModel.getUploadedTime());
         Snowflake snowflake = IdUtil.getSnowflake(1, 1);
-        fileModel.setFileId(snowflake.nextId());
+        fileModel.setFileId(String.valueOf(snowflake.nextId()));
 
         //Create temp file
         File tmpFile =
@@ -56,11 +56,12 @@ public class FileController {
 
     @GetMapping(value = "/file")
     public List<FileModel> showAll() {
+        List<FileModel> list = fileService.list();
         return fileService.list();
     }
 
     @PostMapping(value = "/file/delete")
-    public void delete(@RequestParam String fileId) {
-        fileService.deleteFile(fileService.getById(fileId));
+    public void delete(@RequestBody Map<String, String> map) {
+        fileService.deleteFile(fileService.getById(map.get("fileId")));
     }
 }

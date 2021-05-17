@@ -56,7 +56,7 @@ public class SolrServiceImpl implements SolrService {
             } else {
                 temp.setHighlightContent("");
             }
-            temp.setFileId(Convert.toLong(entry.getEntity().getFileId()));
+            temp.setFileId(entry.getEntity().getFileId());
             temp.setFileName(entry.getEntity().getFileName());
             temp.setAuthor(entry.getEntity().getAuthor());
             temp.setFilePath(entry.getEntity().getFilePath());

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class HighlightFileDTO {
-    private Long fileId;
+    private String fileId;
     private String fileName;
     private String author;
     private String filePath;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @TableName("file")
 public class FileModel {
     @TableId
-    private Long fileId;
+    private String fileId;
     private String fileName;
     private String author;
     private String filePath;
