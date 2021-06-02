@@ -19,4 +19,6 @@ public interface SolrService {
     List<HighlightFileDTO> getHighlightFile(String searchTerm, Pageable pageable);
 
     void deleteIndex(FileModel fileModel);
+
+    void updateIndex(FileModel fileModel);
 }

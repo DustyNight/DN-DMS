@@ -24,7 +24,7 @@ public class SolrController {
 
     @GetMapping(value = "search")
     public List<HighlightFileDTO> solrSearch(@RequestParam(value = "searchTerm") String searchTerm,
-                                             @PageableDefault(page = 0, size = 10) Pageable pageable) {
+                                             @PageableDefault(page = 0, size = 999) Pageable pageable) {
         return solrService.getHighlightFile(searchTerm, pageable);
     }
 }

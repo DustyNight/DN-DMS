@@ -6,6 +6,8 @@
         <template #header>
           <div class="card-header">
             <div id="fileName">{{ file.fileName }}</div>
+            <el-button class="button" type="text">Preview</el-button>
+            <el-button class="button" type="text">Download</el-button>
             <el-button @click="deleteFile(file.fileId)" class="button" type="text" 
               >Delete</el-button
             >

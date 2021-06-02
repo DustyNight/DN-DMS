@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @className: SolrServiceImpl
@@ -69,5 +70,13 @@ public class SolrServiceImpl implements SolrService {
 
     public void deleteIndex(FileModel fileModel) {
         solrFileRepository.deleteById(fileModel.getFileId().toString());
+    }
+
+    public void updateIndex(FileModel fileModel) {
+        Optional<SolrFileDTO> optionalSolrFileDTO = solrFileRepository.findById(fileModel.getFileId());
+        SolrFileDTO solrFileDTO = optionalSolrFileDTO.get();
+        solrFileDTO.setTags(fileModel.getTags());
+        solrFileDTO.setAuthor(fileModel.getAuthor());
+        solrFileRepository.save(solrFileDTO);
     }
 }

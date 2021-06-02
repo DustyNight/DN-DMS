@@ -2,6 +2,7 @@ import Upload from '../components/Upload'
 import SearchResult from '../components/SearchResult'
 import Home from '../components/Home'
 import ListFile from '../components/ListFile'
+import FileInfoUpdate from '../components/FileInfoUpdate'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes =
@@ -30,6 +31,11 @@ const routes =
             path: '/search/',
             component: SearchResult,
         },
+        {
+            name: "FileInfoUpdate",
+            path: '/fileinfoupdate/',
+            component: FileInfoUpdate,
+        }
     ]
 
 const router = createRouter({

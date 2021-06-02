@@ -5,7 +5,9 @@
         <template #header>
           <div class="card-header">
             <span id="fileName">{{ file.fileName }}</span>
-            <el-button class="button" type="text">Preview(In dev)</el-button>
+            <el-button class="button" type="text">Preview</el-button>
+            <el-button class="button" type="text">Download</el-button>
+            <el-button class="button" type="text">Delete</el-button>
           </div>
         </template>
         <div id="fileAuthor">Author: {{ file.author }}</div>
